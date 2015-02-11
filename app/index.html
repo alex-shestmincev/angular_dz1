@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en" ng-app="guestlistApp">
+<head>
+  <meta charset="utf-8">
+  <title>My HTML File</title>
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
+
+
+  <script src="js/controllers.js"></script>
+</head>
+<body ng-controller="GuestListCtrl">
+
+<div class="col-xs-12">
+    <h1>Список гостей</h1>
+</div>
+<div class="col-xs-4 invited">
+    <div ng-repeat="guest in guests" class="item">
+        <div class="button-right">
+            <a class="btn btn-success" href="#" ng-click="addClient($index)" role="button">
+                <span class="glyphicon glyphicon-plus"></span>
+            </a>
+            <a class="btn btn-danger" href="#" ng-click="removeGuest($index)" role="button">
+                <span class="glyphicon glyphicon-remove"></span>
+            </a>
+        </div>
+        {{guest.name}}
+    </div>
+</div>
+<div class="col-xs-4 in-hall">
+    <div ng-repeat="client in clients" class="item">
+        <div class="button-right">
+            <a class="btn btn-primary" href="#" ng-click="clientToGuests($index)" role="button">
+                <span class="glyphicon glyphicon-minus"></span>
+            </a>
+        </div>
+        {{client.name}}
+    </div>
+</div>
+<!-- ADD FORM -->
+<div class="col-xs-4">
+    <h2>Новый гость</h2>
+
+    <div class="item">
+        <form role="form">
+            <div class="form-group">
+                <label for="name">Имя гостя</label>
+                <input type="text" id="name" class="form-control" name="name" placeholder="Имя гостя" ng-model="new_name"/>
+            </div>
+
+            <button type="submit" id="addGuest" class="btn btn-default" ng-click="newGuest()">Добавить</button>
+        </form>
+    </div>
+</div>
+<!-- ADD FORM -->
+
+</body>
+</html>
